@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Computeledev – Laptop, PC & Thiết bị công nghệ</title>
+<meta name="description" content="Computeledev: laptop, PC, tai nghe, sạc không dây và phụ kiện công nghệ. Có công cụ so sánh, gợi ý theo ngân sách và tự build PC kiểm tra tương thích.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap bar">
+    <a class="logo" href="#top">⚡ Computele<span>dev</span></a>
+    <input id="q" class="search" type="search" placeholder="Tìm laptop, tai nghe, sạc..." aria-label="Tìm kiếm">
+    <nav class="nav">
+      <a href="#finder">Gợi ý</a>
+      <a href="#shop">Sản phẩm</a>
+      <a href="#builder">Build PC</a>
+      <a href="#contact">Liên hệ</a>
+    </nav>
+    <div class="actions">
+      <button id="btnTheme" class="icon" title="Chế độ sáng/tối" aria-label="Đổi giao diện">🌓</button>
+      <button id="btnWish" class="icon" title="Yêu thích" aria-label="Yêu thích">♡<b id="wishCount">0</b></button>
+      <button id="btnCompare" class="icon" title="So sánh" aria-label="So sánh">⚖️<b id="cmpCount">0</b></button>
+      <button id="btnCart" class="icon" title="Giỏ hàng" aria-label="Giỏ hàng">🛒<b id="cartCount">0</b></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <h1>Công nghệ chuẩn, giá rõ ràng.</h1>
+      <p>Laptop, PC, tai nghe, sạc không dây và hơn thế nữa. Tự build PC có kiểm tra tương thích, so sánh tới 3 sản phẩm, theo dõi giá mong muốn.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#shop">Xem sản phẩm</a>
+        <a class="btn ghost" href="#builder">Build PC của bạn</a>
+      </div>
+      <ul class="perks">
+        <li>🚚 Miễn phí ship từ 5 triệu</li>
+        <li>🛡️ Bảo hành chính hãng</li>
+        <li>🔁 Đổi trả 7 ngày</li>
+        <li>🎟️ Mã <code>COMPUTELE10</code> giảm 10%</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="finder" class="wrap block">
+    <h2>🎯 Tìm máy theo nhu cầu & ngân sách</h2>
+    <div class="finder">
+      <label>Bạn dùng để làm gì?
+        <select id="fUse">
+          <option value="gaming">Chơi game</option>
+          <option value="office">Văn phòng</option>
+          <option value="student">Học tập / sinh viên</option>
+          <option value="creator">Đồ họa / dựng video</option>
+        </select>
+      </label>
+      <label>Ngân sách tối đa: <strong id="fBudgetLabel"></strong>
+        <input id="fBudget" type="range" min="5000000" max="50000000" step="500000" value="20000000">
+      </label>
+    </div>
+    <div id="finderResult" class="grid small"></div>
+  </section>
+
+  <section id="shop" class="wrap block">
+    <h2>🛍️ Sản phẩm</h2>
+    <div class="filters">
+      <div id="chips" class="chips"></div>
+      <label>Giá tối đa: <strong id="priceLabel"></strong>
+        <input id="price" type="range" min="500000" max="50000000" step="500000" value="50000000">
+      </label>
+      <label>Sắp xếp
+        <select id="sort">
+          <option value="pop">Phổ biến</option>
+          <option value="asc">Giá tăng dần</option>
+          <option value="desc">Giá giảm dần</option>
+          <option value="disc">Giảm giá nhiều</option>
+          <option value="rate">Đánh giá cao</option>
+        </select>
+      </label>
+    </div>
+    <p id="resultInfo" class="muted"></p>
+    <div id="grid" class="grid"></div>
+  </section>
+
+  <section id="builder" class="wrap block">
+    <h2>🧩 Build PC – tự kiểm tra tương thích</h2>
+    <p class="muted">Chọn linh kiện, hệ thống tự kiểm tra socket CPU, loại RAM và công suất nguồn.</p>
+    <div class="builder">
+      <div id="bSelects"></div>
+      <aside class="bSummary">
+        <h3>Tổng kết</h3>
+        <div id="bInfo"></div>
+        <button id="bAdd" class="btn">Thêm cả bộ vào giỏ</button>
+      </aside>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap block">
+    <h2>📞 Liên hệ</h2>
+    <p id="contactInfo" class="muted"></p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">© <span id="year"></span> Computeledev · Giá và hình ảnh trong bản demo chỉ mang tính minh họa.</div>
+</footer>
+
+<dialog id="dlgProduct"></dialog>
+<dialog id="dlgCompare"></dialog>
+<dialog id="dlgWish"></dialog>
+<dialog id="dlgCart" class="side"></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="products.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
