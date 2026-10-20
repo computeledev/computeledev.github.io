@@ -5,15 +5,20 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Computeledev – Laptop, PC & Thiết bị công nghệ</title>
 <meta name="description" content="Computeledev: laptop, PC, tai nghe, sạc không dây và phụ kiện công nghệ. Có công cụ so sánh, gợi ý theo ngân sách và tự build PC kiểm tra tương thích.">
+<meta name="theme-color" content="#4f46e5">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="top">
   <div class="wrap bar">
-    <a class="logo" href="#top">⚡ Computele<span>dev</span></a>
+    <a class="logo" href="#top" aria-label="Computeledev trang chủ"><i class="logo-mark">⚡</i><span>Computele<em>dev</em></span></a>
     <input id="q" class="search" type="search" placeholder="Tìm laptop, tai nghe, sạc..." aria-label="Tìm kiếm">
-    <nav class="nav">
+    <nav class="nav" aria-label="Điều hướng">
+      <a href="#categories">Danh mục</a>
       <a href="#finder">Gợi ý</a>
       <a href="#shop">Sản phẩm</a>
       <a href="#builder">Build PC</a>
@@ -24,31 +29,47 @@
       <button id="btnWish" class="icon" title="Yêu thích" aria-label="Yêu thích">♡<b id="wishCount">0</b></button>
       <button id="btnCompare" class="icon" title="So sánh" aria-label="So sánh">⚖️<b id="cmpCount">0</b></button>
       <button id="btnCart" class="icon" title="Giỏ hàng" aria-label="Giỏ hàng">🛒<b id="cartCount">0</b></button>
+      <button id="btnUser" class="btn sm btn-user" aria-label="Tài khoản">Đăng nhập</button>
     </div>
   </div>
 </header>
 
 <main id="top">
   <section class="hero">
-    <div class="wrap">
-      <h1>Công nghệ chuẩn, giá rõ ràng.</h1>
-      <p>Laptop, PC, tai nghe, sạc không dây và hơn thế nữa. Tự build PC có kiểm tra tương thích, so sánh tới 3 sản phẩm, theo dõi giá mong muốn.</p>
-      <div class="hero-cta">
-        <a class="btn" href="#shop">Xem sản phẩm</a>
-        <a class="btn ghost" href="#builder">Build PC của bạn</a>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="pill">✨ Cửa hàng công nghệ trực tuyến</span>
+        <h1>Công nghệ chuẩn.<br>Giá rõ ràng.</h1>
+        <p>Laptop, PC, tai nghe, sạc không dây và hơn thế nữa. Tự build PC có kiểm tra tương thích, so sánh tới 3 sản phẩm, theo dõi giá mong muốn.</p>
+        <div class="hero-cta">
+          <a class="btn light" href="#shop">Khám phá sản phẩm</a>
+          <a class="btn ghost" href="#builder">Build PC của bạn</a>
+          <a class="btn ghost" href="#" data-auth="register">Tạo tài khoản</a>
+        </div>
+        <ul class="perks">
+          <li>🚚 Miễn phí ship từ 5 triệu</li>
+          <li>🛡️ Bảo hành chính hãng</li>
+          <li>🔁 Đổi trả 7 ngày</li>
+          <li>🎟️ Mã <code>COMPUTELE10</code> giảm 10%</li>
+        </ul>
       </div>
-      <ul class="perks">
-        <li>🚚 Miễn phí ship từ 5 triệu</li>
-        <li>🛡️ Bảo hành chính hãng</li>
-        <li>🔁 Đổi trả 7 ngày</li>
-        <li>🎟️ Mã <code>COMPUTELE10</code> giảm 10%</li>
-      </ul>
+      <div class="hero-art" aria-hidden="true">
+        <div class="float f1">💻</div>
+        <div class="float f2">🎧</div>
+        <div class="float f3">🖥️</div>
+        <div class="float f4">🔋</div>
+      </div>
     </div>
   </section>
 
+  <section id="categories" class="wrap block">
+    <div class="sec-head"><span class="eyebrow">Danh mục</span><h2>Bạn đang tìm gì?</h2></div>
+    <div id="tiles" class="tiles"></div>
+  </section>
+
   <section id="finder" class="wrap block">
-    <h2>🎯 Tìm máy theo nhu cầu & ngân sách</h2>
-    <div class="finder">
+    <div class="sec-head"><span class="eyebrow">Gợi ý thông minh</span><h2>🎯 Tìm máy theo nhu cầu & ngân sách</h2></div>
+    <div class="panel finder">
       <label>Bạn dùng để làm gì?
         <select id="fUse">
           <option value="gaming">Chơi game</option>
@@ -65,8 +86,8 @@
   </section>
 
   <section id="shop" class="wrap block">
-    <h2>🛍️ Sản phẩm</h2>
-    <div class="filters">
+    <div class="sec-head"><span class="eyebrow">Cửa hàng</span><h2>🛍️ Sản phẩm</h2></div>
+    <div class="panel filters">
       <div id="chips" class="chips"></div>
       <label>Giá tối đa: <strong id="priceLabel"></strong>
         <input id="price" type="range" min="500000" max="50000000" step="500000" value="50000000">
@@ -86,10 +107,10 @@
   </section>
 
   <section id="builder" class="wrap block">
-    <h2>🧩 Build PC – tự kiểm tra tương thích</h2>
+    <div class="sec-head"><span class="eyebrow">Công cụ</span><h2>🧩 Build PC – tự kiểm tra tương thích</h2></div>
     <p class="muted">Chọn linh kiện, hệ thống tự kiểm tra socket CPU, loại RAM và công suất nguồn.</p>
     <div class="builder">
-      <div id="bSelects"></div>
+      <div id="bSelects" class="panel"></div>
       <aside class="bSummary">
         <h3>Tổng kết</h3>
         <div id="bInfo"></div>
@@ -99,22 +120,46 @@
   </section>
 
   <section id="contact" class="wrap block">
-    <h2>📞 Liên hệ</h2>
+    <div class="sec-head"><span class="eyebrow">Hỗ trợ</span><h2>📞 Liên hệ</h2></div>
     <p id="contactInfo" class="muted"></p>
   </section>
 </main>
 
 <footer class="foot">
-  <div class="wrap">© <span id="year"></span> Computeledev · Giá và hình ảnh trong bản demo chỉ mang tính minh họa.</div>
+  <div class="wrap foot-grid">
+    <div>
+      <a class="logo" href="#top"><i class="logo-mark">⚡</i><span>Computele<em>dev</em></span></a>
+      <p class="muted">Laptop, PC và thiết bị công nghệ chính hãng.</p>
+    </div>
+    <div>
+      <h4>Mua sắm</h4>
+      <a href="#shop">Tất cả sản phẩm</a>
+      <a href="#finder">Gợi ý theo nhu cầu</a>
+      <a href="#builder">Build PC</a>
+    </div>
+    <div>
+      <h4>Tài khoản</h4>
+      <a href="#" data-auth="login">Đăng nhập</a>
+      <a href="#" data-auth="register">Đăng ký</a>
+      <a href="#" data-auth="forgot">Quên mật khẩu</a>
+    </div>
+    <div>
+      <h4>Hỗ trợ</h4>
+      <a href="#contact">Liên hệ</a>
+    </div>
+  </div>
+  <div class="wrap foot-copy">© <span id="year"></span> Computeledev · Giá và hình ảnh trong bản demo chỉ mang tính minh họa.</div>
 </footer>
 
 <dialog id="dlgProduct"></dialog>
 <dialog id="dlgCompare"></dialog>
 <dialog id="dlgWish"></dialog>
 <dialog id="dlgCart" class="side"></dialog>
+<dialog id="dlgAuth"></dialog>
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script src="products.js"></script>
 <script src="app.js"></script>
+<script src="auth.js"></script>
 </body>
 </html>

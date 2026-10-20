@@ -51,7 +51,7 @@
   const card = p => {
     const d = discPct(p);
     return `<article class="card">
-      <button class="thumb" data-act="view" data-id="${p.id}" aria-label="Xem ${esc(p.name)}">${thumb(p)}${d ? `<span class="badge">-${d}%</span>` : ""}</button>
+      <button class="thumb t-${p.cat}" data-act="view" data-id="${p.id}" aria-label="Xem ${esc(p.name)}">${thumb(p)}${d ? `<span class="badge">-${d}%</span>` : ""}</button>
       <div class="body">
         <div class="brand">${esc(p.brand)}</div>
         <h3><a href="#" data-act="view" data-id="${p.id}">${esc(p.name)}</a></h3>
@@ -171,7 +171,7 @@
   const openCart = () => {
     const d = $("#dlgCart");
     if (!d.dataset.ready) {
-      const c = load("cust", {});
+      const c = { ...load("cust", {}), ...(window.CLAuth ? window.CLAuth.profile() : {}) };
       d.innerHTML = `<div class="dwrap">
         <div class="dhead"><h3>🛒 Giỏ hàng</h3><button class="icon" data-close aria-label="Đóng">✕</button></div>
         <div id="cartList"></div>
@@ -211,6 +211,7 @@
       "",
       `Khách hàng: ${cust.name}`,
       `SĐT: ${cust.phone}`,
+      window.CLAuth && window.CLAuth.user() ? `Email tài khoản: ${window.CLAuth.user().email}` : null,
       `Địa chỉ: ${cust.addr}`,
       $("#oNote").value.trim() ? `Ghi chú: ${$("#oNote").value.trim()}` : null
     ].filter(x => x !== null).join("\n");
@@ -444,6 +445,19 @@
   renderFinder();
   buildSelects();
   updateBadges();
+
+  // ô danh mục lớn
+  $("#tiles").innerHTML = CATS.map(c => `<button class="tile" data-tile="${c.id}"><span class="ti">${c.icon}</span><strong>${c.name}</strong><small>${PRODUCTS.filter(p => p.cat === c.id).length} sản phẩm</small></button>`).join("");
+  $("#tiles").addEventListener("click", e => {
+    const b = e.target.closest("[data-tile]");
+    if (!b) return;
+    state.cat = b.dataset.tile;
+    renderChips(); renderGrid();
+    $("#shop").scrollIntoView({ behavior: "smooth" });
+  });
+
+  // chia sẻ tiện ích cho auth.js
+  window.CL = { $, $$, esc, toast, load, store, vnd };
 
   // thông báo các sản phẩm đã đạt mức giá mong muốn
   Object.entries(alerts).forEach(([id, target]) => {

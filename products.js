@@ -1,6 +1,9 @@
 /* ===== Cấu hình cửa hàng: sửa ở đây ===== */
 const CONFIG = {
   shop: "Computeledev",
+  // Dán địa chỉ Web app của Google Apps Script vào đây (xem apps-script/HUONG-DAN.md).
+  // Ví dụ: "https://script.google.com/macros/s/AKfycb.../exec"
+  apiUrl: "",
   phone: "0900 000 000",        // đổi thành số thật
   zalo: "0900000000",           // số Zalo (không dấu cách)
   email: "hello@example.com",   // email nhận đơn
